@@ -1,0 +1,12 @@
+*{
+    font-family: sans-serif;
+}
+:root {
+    --primary-color: #ee4d2d;
+    --sub-color: rgb(245, 240, 240);
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}

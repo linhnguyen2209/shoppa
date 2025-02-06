@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{/admin/layout/layout.html}">
+
+<head>
+    <title>Product Management</title>
+    <th:block layout:fragment="css">
+        <!-- <link rel="stylesheet" th:href="@{}" /> -->
+    </th:block>
+</head>
+
+<body>
+    <section layout:fragment="content" class="row mt-3 ">
+        <h2 class="text-white w-100 p-0 mb-3 fw-bold">Product Management</h2>
+        <ul class="nav nav-tabs" id="tabProductManagement" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active fw-bold" id="productEdition-tab" data-bs-toggle="tab"
+                    data-bs-target="#productEdition-tab-pane" type="button" role="tab"
+                    aria-controls="productEdition-tab-pane" aria-selected="true">Product Edition</button>
+            </li>
+            <li class="nav-item fw-bold" role="presentation">
+                <button class="nav-link" id="productList-tab" data-bs-toggle="tab"
+                    data-bs-target="#productList-tab-pane" type="button" role="tab" aria-controls="productList-tab-pane"
+                    aria-selected="false">Product List</button>
+            </li>
+        </ul>
+        <div class="tab-content p-0" id="tabProductManagementContent">
+            <div class="tab-pane fade show active" id="productEdition-tab-pane" role="tabpanel"
+                aria-labelledby="productEdition-tab" tabindex="0">
+                <form th:action="@{/shopaa/admin/products}" th:object="${productDto}" method="post"
+                    enctype="multipart/form-data" class="px-3 py-4 d-flex justify-content-center border bg-gradient"
+                    id="objectForm">
+                    <div class="row w-100 p-0">
+                        <div class="col-12 col-lg-5 col-xl-4 mb-lg-0 mb-3 pb-3">
+                            <h6 class="fw-bold text-white">Product Image:</h6>
+                            <div class="border p-4 rounded-3">
+                                <div class="input-group">
+                                    <input type="file" class="form-control d-none" th:field="*{imageFile}" id="cover"
+                                        name="cover" aria-describedby="messageImageFile">
+                                    <label for="cover" style="cursor: pointer;" class="text-center w-100">
+                                        <img th:src="@{${productDto.image}}" alt="" class="object-fit-cover"
+                                            width="100%" height="350">
+                                    </label>
+                                </div>
+                            </div>
+                            <small id="messageImageFile" class="form-text text-danger"
+                                th:if="${#fields.hasErrors('imageFile')}" th:errors="*{imageFile}"></small>
+                        </div>
+                        <div class="col-12 col-lg-7 col-xl-8 row p-0 m-0">
+                            <div class="form-group mb-3 col-12 col-md-6">
+                                <label for="productId" class=" fw-bold text-light mb-2">Product Id</label>
+                                <input type="text" class="form-control rounded-2 bg-body-secondary"
+                                    th:field="*{productId}" aria-describedby="messageId" readonly>
+                                <small id="messageId" class="form-text text-danger"
+                                    th:if="${#fields.hasErrors('productId')}" th:errors="*{productId}"></small>
+                            </div>
+                            <div class="form-group mb-3 col-12 col-md-6">
+                                <label for="name" class=" fw-bold text-light mb-2">Product Name</label>
+                                <input type="text" class="form-control  rounded-2 bg-body-secondary" th:field="*{name}"
+                                    aria-describedby="messageName" placeholder="">
+                                <small id="messageName" class="form-text text-danger"
+                                    th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></small>
+                            </div>
+                            <div class="form-group mb-3 col-12 col-md-6">
+                                <label for="price" class=" fw-bold text-light mb-2">Product Price</label>
+                                <input type="text" class="form-control  rounded-2 bg-body-secondary" th:field="*{price}"
+                                    aria-describedby="messagePrice" placeholder="">
+                                <small id="messagePrice" class="form-text text-danger"
+                                    th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></small>
+                            </div>
+                            <div class="form-group mb-3 col-12 col-md-6">
+                                <label for="stock" class=" fw-bold text-light mb-2">Stock</label>
+                                <input type="text" class="form-control  rounded-2 bg-body-secondary" th:field="*{stock}"
+                                    aria-describedby="messageStock" placeholder="">
+                                <small id="messageStock" class="form-text text-danger"
+                                    th:if="${#fields.hasErrors('stock')}" th:errors="*{stock}"></small>
+                            </div>
+                            <div class="form-group mb-3 col-12 col-md-6">
+                                <label for="discount" class=" fw-bold text-light mb-2">Discount</label>
+                                <input type="text" class="form-control  rounded-2 bg-body-secondary"
+                                    th:field="*{discount}" aria-describedby="messageDiscount" placeholder="">
+                                <small id="messageDiscount" class="form-text text-danger"
+                                    th:if="${#fields.hasErrors('discount')}" th:errors="*{discount}"></small>
+                            </div>
+                            <div class="form-group mb-3 col-12 col-md-6">
+                                <label for="categoryId" class="fw-bold text-light mb-2">Category Id</label>
+                                <select class="form-select" th:field="*{categoryId}"
+                                    aria-label="Default select example">
+                                    <option th:value="0">Open Categories</option>
+                                    <option th:each="category : ${categories}" th:value="${category.categoryId}"
+                                        th:text="${category.categoryName}"></option>
+                                </select>
+                                <small id="messageCategoryId" class="form-text text-danger"
+                                    th:if="${#fields.hasErrors('categoryId')}" th:errors="*{categoryId}"></small>
+                            </div>
+                            <div class="form-group mb-3 col-12 col-md-6">
+                                <label for="createAt" class=" fw-bold text-light mb-2">Create At</label>
+                                <input type="date" class="form-control  rounded-2 bg-body-secondary"
+                                    th:field="*{createAt}" aria-describedby="messageCreateAt" readonly >
+                                <small id="messageCreateAt" class="form-text text-danger"
+                                    th:if="${#fields.hasErrors('createAt')}" th:errors="*{createAt}"></small>
+                            </div>
+                            <div class="form-group mb-3 col-12 col-md-6">
+                                <label for="updateAt" class=" fw-bold text-light mb-2">Update At</label>
+                                <input type="date" class="form-control  rounded-2 bg-body-secondary"
+                                    th:field="*{updateAt}" id="updateAt" aria-describedby="messageUpdateAt"
+                                    placeholder="" readonly>
+                                <small id="messageUpdateAt" class="form-text text-danger "
+                                    th:if="${#fields.hasErrors('updateAt')}" th:errors="*{updateAt}"></small>
+                            </div>
+                            
+                        </div>
+                        <div class="col-12 mt-2">
+                            <label for="description" class="text-light fw-bold mb-2">Description</label>
+                            <textarea th:field="*{description}" id="description" cols="" rows="4"
+                                class="form-control"></textarea>
+                        </div>
+                        <div class="col-12 mt-4 text-end">
+                            <a class="btn btn-outline-warning me-2" th:href="@{/shopaa/admin/products/reset}">Reset</a>
+                            <button type="button" class="btn btn-outline-success me-2"
+                                onclick="submitForm('/shopaa/admin/products/save')"
+                                th:if="${isEditing} == false">Create</button>
+                            <button type="button" class="btn btn-outline-primary me-2"
+                                onclick="submitForm('/shopaa/admin/products/save')"
+                                th:if="${isEditing} == true">Update</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="tab-pane fade" id="productList-tab-pane" role="tabpanel" aria-labelledby="productList-tab"
+                tabindex="0">
+                <div class="px-4 py-4 bg-gradient border overflow-auto">
+                    <form class="search d-flex mb-3" th:action="@{/shopaa/admin/products/search}" role="search">
+                        <input class="ps-3" type="search" th:value="${keyword}" name="keyword" placeholder="Tìm kiếm"
+                            aria-label="Search">
+                        <button class="btn" type="submit"><i class="bi bi-search me-1"></i></button>
+                    </form>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col" class="col-1">Product Id</th>
+                                <th scope="col" class="col-3">Product Name</th>
+                                <th scope="col" class="col-2 ">Product Price</th>
+                                <th scope="col" class="col-1">Stock</th>
+                                <th scope="col" class="col-1">Discount</th>
+                                <th scope="col" class="col-1">Create At</th>
+                                <th scope="col" class="col-1">Update At</th>
+                                <th scope="col" class="col-1">Category Id</th>
+                                <th scope="col" class="col-1"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="product : ${products}">
+                                <td th:text="${product.productId}">1</td>
+                                <td th:text="${product.name}">Điện thoại nokia 1080</td>
+                                <td th:text="${product.price}">70.00.000đ</td>
+                                <td th:text="${product.stock}">300</td>
+                                <td th:text="${product.discount}">20%</td>
+                                <td th:text="${product.createAt}">22/09/2023</td>
+                                <td th:text="${product.updateAt}">19/02/2024</td>
+                                <td th:text="${product.category.categoryId}">2</td>
+                                <td>
+                                    <a th:href="@{/shopaa/admin/products/edit/{id}(id=${product.productId})}"
+                                        class="pe-3"><i class="bi bi-pencil"
+                                            onclick="openEditTab('#productEdition-tab-pane')"></i></a>
+                                    <a th:href="@{/shopaa/admin/products/delete/{id}(id=${product.productId})}"
+                                        class="pe-3"><i class="bi bi-trash3 text-danger"></i></a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="col-12 mt-4 d-flex justify-content-between w-100">
+                        <div class="total_item text-white fs-5">Total Product: <span
+                            th:text="${productPage.totalElements}"></span></div>
+                        <ul th:if="${productPage.totalPages} > 0" class="pagination rounded-0 m-0" id="pagination">
+                            <li class="page-item"><a class="btn btn-outline-light rounded-0"
+                                    th:href="@{/shopaa/admin/products(page=0, size=${productPage.size}, keyword=${keyword})}">First</a>
+                            </li>
+                            <li class="page-item" th:each="i : ${#numbers.sequence(0, productPage.totalPages - 1)}">
+                                <a class="btn btn-outline-light rounded-0"
+                                    th:href="@{/shopaa/admin/products(page=${i}, size=${productPage.size}, keyword=${keyword})}"
+                                    th:text="${i + 1}"></a>
+                            </li>
+                            <li class="page-item"><a class="btn btn-outline-light rounded-0"
+                                    th:href="@{/shopaa/admin/products(page=${productPage.totalPages - 1}, size=${productPage.size}, keyword=${keyword})}">Last</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

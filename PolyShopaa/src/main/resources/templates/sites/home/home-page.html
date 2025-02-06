@@ -1,0 +1,240 @@
+<!-- page.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{/sites/layout/layout.html}">
+<!-- Sử dụng lại bố cục của trang layout và chỉ ghi đè phần content -->
+
+<head>
+    <title>Home Page</title>
+    <th:block layout:fragment="css">
+        <link rel="stylesheet" th:href="@{/css/home.css}" />
+    </th:block>
+</head>
+
+<body>
+    <div layout:fragment="content">
+        <!-- Carousel -->
+        <section>
+            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
+                        class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                        aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                        aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <a href=""><img src="https://cf.shopee.vn/file/vn-11134258-7r98o-lwsh6lebk3q128_xxhdpi"
+                                class="d-block w-100" alt="..."></a>
+                    </div>
+                    <div class="carousel-item">
+                        <a href=""><img src="https://cf.shopee.vn/file/sg-11134258-7rd4e-lwpnf8souixy28_xxhdpi"
+                                class="d-block w-100" alt="..."></a>
+                    </div>
+                    <div class="carousel-item">
+                        <a href=""><img src="https://cf.shopee.vn/file/sg-11134258-7rd5f-lwpln3ho8jm4e6_xxhdpi"
+                                class="d-block w-100" alt="..."></a>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </section>
+        <!-- Categories -->
+        <section class=" bg-white py-5 mt-0">
+            <div class="container">
+                <div class="row text-center">
+                    <div class="col category-icon">
+                        <a href="#" class="text-decoration-none text-dark-emphasis" style="font-size: 15px;">
+                            <img src="/uploads/categories/thoitrangnam.png" alt="Category" width="50" height="50">
+                            <span class="mt-1">Thời Trang Nam</span>
+                        </a>
+                    </div>
+                    <div class="col category-icon">
+                        <a href="#" class="text-decoration-none text-dark-emphasis" style="font-size: 15px;">
+                            <img src="/uploads/categories/dienthoaiphukien.png" alt="Category" width="50" height="50">
+                            <span class="mt-1">Điện Thoại & Phụ Kiện</span>
+                        </a>
+                    </div>
+                    <div class="col category-icon">
+                        <a href="#" class="text-decoration-none text-dark-emphasis" style="font-size: 15px;">
+                            <img src="/uploads/categories/thietbidientu.png" alt="Category" width="50" height="50">
+                            <span class="mt-1">Thiết Bị Điện Tử</span>
+                        </a>
+                    </div>
+                    <div class="col category-icon">
+                        <a href="#" class="text-decoration-none text-dark-emphasis" style="font-size: 15px;">
+                            <img src="/uploads/categories/dongho.png" alt="Category" width="50" height="50">
+                            <span class="mt-1">Đồng Hồ</span>
+                        </a>
+                    </div>
+                    <div class="col category-icon">
+                        <a href="#" class="text-decoration-none text-dark-emphasis" style="font-size: 15px;">
+                            <img src="/uploads/categories/giaynam.png" alt="Category" width="50" height="50">
+                            <span class="mt-1">Giày Dép Nam</span>
+                        </a>
+                    </div>
+                    <div class="col category-icon">
+                        <a href="#" class="text-decoration-none text-dark-emphasis" style="font-size: 15px;">
+                            <img src="/uploads/categories/thethaodulich.png" alt="Category" width="50" height="50">
+                            <span class="mt-1">Thể Thao & Du Lịch</span>
+                        </a>
+                    </div>
+                    <div class="col category-icon">
+                        <a href="#" class="text-decoration-none text-dark-emphasis" style="font-size: 15px;">
+                            <img src="/uploads/categories/xemay.png" alt="Category" width="50" height="50">
+                            <span class="mt-1">Ô Tô & Xe Máy</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Flash Sale Section -->
+        <section class="container mt-4">
+            <div class="box-flash-sale bg-white px-5 py-4">
+                <div class="flash-sale__head d-flex align-items-center justify-content-start">
+                    <span class="icon_fire me-3"><i class="fa-sharp fa-solid fa-fire fa-bounce fs-3"
+                            style="color: #db831f;"></i></span>
+                    <span class="fs-3 fw-bold me-3" style="color: var(--primary-color);">F<i
+                            class="fa-sharp fa-solid fa-bolt-lightning fa-fade" style="color: #db831f;"></i>ASH <span
+                            id="sale">SALE</span></span>
+                    <div class="flash-sale__timer d-flex justify-content-center">
+                        <div class="flash-sale__time flash-sale__time--hours">00</div>
+                        <div class="flash-sale__colon fw-bold mx-1">:</div>
+                        <div class="flash-sale__time flash-sale__time--minutes">00</div>
+                        <div class="flash-sale__colon fw-bold mx-1">:</div>
+                        <div class="flash-sale__time flash-sale__time--seconds">00</div>
+                    </div><span class="icon_fire ms-3"><i class="fa-sharp fa-solid fa-fire fa-bounce fs-3"
+                            style="color: #db831f;"></i>
+                    </span>
+                </div>
+                <div class="flash-sale__body pt-3 d-flex justify-content-between flex-wrap">
+                    <div class="flash-sale__product">
+                        <div class="flash-sale__product-img">
+                            <img src="https://lzd-img-global.slatic.net/g/p/f05144137024f8ab083ade28f7ce83e8.jpg_400x400q80.jpg_.webp"
+                                alt="Product 1" class="object-fit-cover" width="200" height="200">
+                        </div>
+                        <div class="flash-sale__product-info">
+                            <div class="flash-sale__product-name">Bàn Phím cơ</div>
+                            <div class="flash-sale__product-price">789,000 VND</div>
+                        </div>
+                    </div>
+                    <div class="flash-sale__product">
+                        <div class="flash-sale__product-img">
+                            <img src="https://lzd-img-global.slatic.net/g/p/a2faa577c241779fb1ca1ecfc8b8a6d2.png_400x400q80.jpg_.webp"
+                                alt="Product 2" class="object-fit-cover" width="200" height="200">
+                        </div>
+                        <div class="flash-sale__product-info">
+                            <div class="flash-sale__product-name">Quạn mini cầm tay</div>
+                            <div class="flash-sale__product-price">150,000 VND</div>
+                        </div>
+                    </div>
+                    <div class="flash-sale__product">
+                        <div class="flash-sale__product-img">
+                            <img src="https://lzd-img-global.slatic.net/g/p/9ab00515d6a0b72191b9cac015b4dd7c.jpg_400x400q80.jpg_.webp"
+                                alt="Product 3" class="object-fit-cover" width="200" height="200">
+                        </div>
+                        <div class="flash-sale__product-info">
+                            <div class="flash-sale__product-name">Găng tay gaming</div>
+                            <div class="flash-sale__product-price">9,000 VND</div>
+                        </div>
+                    </div>
+                    <div class="flash-sale__product">
+                        <div class="flash-sale__product-img">
+                            <img src="https://lzd-img-global.slatic.net/g/p/dc7e5f8eadb7feecf323f460ff5d36ab.jpg_400x400q80.jpg_.webp"
+                                alt="Product 4" class="object-fit-cover" width="200" height="200">
+                        </div>
+                        <div class="flash-sale__product-info">
+                            <div class="flash-sale__product-name">Ví da nam chất lượng cao</div>
+                            <div class="flash-sale__product-price">300,000 VND</div>
+                        </div>
+                    </div>
+                    <div class="flash-sale__product">
+                        <div class="flash-sale__product-img">
+                            <img src="https://lzd-img-global.slatic.net/g/p/116c7f5f8201d4870809ddc05c06944c.jpg_400x400q80.jpg_.webp"
+                                alt="Product 4" class="object-fit-cover" width="200" height="200">
+                        </div>
+                        <div class="flash-sale__product-info">
+                            <div class="flash-sale__product-name">Đồ thể thao nam</div>
+                            <div class="flash-sale__product-price">199,000 VND</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Categories -->
+        <section class="section-4 container mt-4">
+            <div class="title w-100 bg-white text-uppercase text-center fs-6 fw-medium py-3"
+                style="color: var(--primary-color); border-bottom: 5px solid var(--primary-color);">Gợi ý hôm nay
+            </div>
+            <div class="product__container row mt-3 px-2">
+                <!-- Loop through products -->
+                <div th:each="product : ${products}" class="product__box col-md-2 col-sm-4 col-6 mb-md-3 p-1">
+                    <a class="box__inner text-decoration-none"
+                        th:href="@{/shopaa/sites/product-detail/{productId}(productId=${product.productId})}">
+                        <img th:src="@{${product.image}}" class="card-img-top object-fit-contain" width="100%"
+                            height="186" alt="Product Image">
+                        <div class="body p-2">
+                            <div class="body-title text-truncate text-dark" th:text="${product.name}"
+                                style="height: 50px;"></div>
+                            <div class="box__bottom d-flex align-items-end py-2">
+                                <p class="product__name me-auto" style="color: var(--primary-color);">
+                                    <span class="me-0" style="font-size: small;" th:text="'$'"></span>
+                                    <span
+                                        th:text="${@currencyFormatter.formatCurrency(product.price * (1 - product.discount))}"></span>
+                                </p>
+                                <p class="sold text-secondary" style="font-size: smaller;">
+                                    Đã bán: <span class="quantity__sold" th:text="${product.stock}"></span>
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+        <!-- Partner Logos Section -->
+        <section class="container py-4">
+            <div class="text-center mb-4 p-3 fs-5 fw-medium text-uppercase" style="color: var(--primary-color);">Đối tác
+                của chúng tôi</div>
+            <div class="row mt-5 px-5">
+                <!-- Repeat this block for each partner logo -->
+                <div class="col-md-2 col-sm-4 col-6 mb-4 text-center">
+                    <img src="/images/logo_shopee.png" alt="Partner Logo"
+                        class="object-fit-cover rounded-circle border border-1 border-danger" width="100" height="100">
+                </div>
+                <div class="col-md-2 col-sm-4 col-6 mb-4 text-center">
+                    <img src="/images/logo_congnghe.png" alt="Partner Logo"
+                        class="object-fit-cover rounded-circle border border-1 border-danger" width="100" height="100">
+                </div>
+                <div class="col-md-2 col-sm-4 col-6 mb-4 text-center">
+                    <img src="/images/logo_techcombank.png" alt="Partner Logo"
+                        class="object-fit-cover rounded-circle border border-1 border-danger" width="100" height="100">
+                </div>
+                <div class="col-md-2 col-sm-4 col-6 mb-4 text-center">
+                    <img src="/images/logo_fpt.png" alt="Partner Logo"
+                        class="object-fit-cover rounded-circle border border-1 border-danger" width="100" height="100">
+                </div>
+                <div class="col-md-2 col-sm-4 col-6 mb-4 text-center">
+                    <img src="/images/logo_alibaba.png" alt="Partner Logo"
+                        class="object-fit-cover rounded-circle border border-1 border-danger" width="100" height="100">
+                </div>
+                <div class="col-md-2 col-sm-4 col-6 mb-4 text-center">
+                    <img src="/images/logo_thegioididong.png" alt="Partner Logo"
+                        class="object-fit-cover rounded-circle border border-1 border-danger" width="100" height="100">
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+
+</html>

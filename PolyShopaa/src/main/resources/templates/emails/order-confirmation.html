@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xác nhận đơn hàng</title>
+    <style>
+        .email-container {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+        }
+        .product-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .product-item img {
+            width: 80px;
+            margin-right: 15px;
+        }
+        .product-details {
+            flex-grow: 1;
+        }
+        .product-name {
+            font-size: 18px;
+            margin: 0;
+        }
+        .product-price {
+            font-size: 16px;
+            color: #888;
+        }
+        .total-amount {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 20px;
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <h2>Cảm ơn bạn đã đặt hàng tại shopaa!</h2>
+        <p>Đơn hàng của bạn đã được xác nhận. Dưới đây là thông tin chi tiết:</p>
+
+        <div class="product-list">
+            <!-- Bắt đầu lặp qua các sản phẩm trong giỏ hàng -->
+            <th:block th:each="item : ${cartItems}">
+                <div class="product-item">
+                    <img src="${baseUrl}/uploads/products/${item.product.image}" alt="Hinh san pham" />
+                    <div class="product-details">
+                        <p class="product-name" th:text="${item.product.name}">Product Name</p>
+                        <p class="product-price">Số lượng: <span th:text="${item.quantity}"></span></p>
+                        <p class="product-price">Giá: $<span th:text="${item.unitPrice}"></span></p>
+                    </div>
+                </div>
+            </th:block>
+            <!-- Kết thúc lặp -->
+        </div>
+
+        <p class="total-amount">Tổng số tiền: $<span th:text="${totalAmount}"></span></p>
+        <p>Đơn hàng sẽ được giao đến: <strong th:text="${shippingAddress}"></strong>.</p>
+    </div>
+</body>
+</html>

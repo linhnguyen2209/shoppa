@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xác nhận</title>
+    <link rel="stylesheet" href="../css/form.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!-- Javascript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <!-- ICon bs5 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <script src="https://kit.fontawesome.com/d524d8e031.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="container vh-100 d-flex justify-content-center align-items-center">
+        <div class="row h-100 w-100">
+            <div class="col-xl-7 d-none d-xl-flex justify-content-center align-items-center">
+                <img class="object-fit-cover w-75" src="../images/login_img-removebg.png" alt="login">
+            </div>
+            <div class="col-12 col-md-10 col-lg-7 col-xl-5 d-flex justify-content-center align-items-center m-auto">
+                <div class="form p-5 rounded-3">
+                    <h2 class="mb-4 p-2 text-center fs-2 fw-bold">XÁC NHẬN</h2>
+                    <div class=" position-relative input__item" style="margin-bottom:15px ;">
+                        <label for="confirm" class="form-label fs-4 position-absolute"><i
+                                class="fa-solid fa-code-compare"></i></label>
+                        <input type="text" class="w-100 rounded-5 " id="confirm" aria-describedby="confirmHelp"
+                            placeholder="Nhập mã xác nhận" required>
+                        <div id="confirmHelp" class="message form-text ms-3">Vui lòng nhập mã xác nhận đã được gửi về
+                            email của bạn!</div>
+                    </div>
+                    <div class="mb-3  text-center">
+                        <button type="submit" class="btn fw-bold rounded-5 fs-5 w-100"
+                            style="padding: 12px 0; background-color: var(--primary-color); color: #fff;">Xác nhận</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

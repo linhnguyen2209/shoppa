@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <th:block th:if="${message} != null">
+        <div class="alert alert-success bg-success d-flex align-items-center rounded-5 text-truncate mb-4" role="alert">
+            <div class="text-white" th:text="${message}"></div>
+        </div>
+    </th:block>
+    <th:block th:if="${error} != null">
+        <div class="alert alert-danger bg-danger d-flex align-items-center rounded-5 text-truncate mb-4" role="alert">
+            <div class="text-white" th:text="${error}"></div>
+        </div>
+    </th:block>
+</body>
+
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/form.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!-- Javascript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <!-- ICon bs5 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <script src="https://kit.fontawesome.com/d524d8e031.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="d-flex justify-content-center align-items-center w-100 vh-100">
+        <div class="row h-100 w-100">
+            <div class="col-12 col-md-10 col-lg-7 col-xl-4  d-flex justify-content-center align-items-center m-auto">
+                <div class="form p-5 rounded-3 border border-3 mx-3 mx-lg-0">
+                    <h2 class="mb-4 p-2 text-center fs-2 fw-bold ">Hồ sơ của bạn</h2>
+                    <div class="position-relative input__item" style="margin-bottom:20px ;">
+                        <label for="username" class="form-label fs-3 position-absolute"><i
+                                class="bi bi-person-fill"></i></label>
+                        <input type="text" class="w-100 rounded-5" id="username" aria-describedby="usernameHelp"
+                            placeholder="Tên đăng nhập" required>
+                        <div id="usernameHelp" class="form-text"></div>
+                    </div>
+                    <div class=" position-relative input__item" style="margin-bottom:25px ;">
+                        <label for="fullname" class="form-label fs-4 position-absolute"><i
+                                class="fa-solid fa-signature"></i></label>
+                        <input type="text" class="w-100 rounded-5 " id="fullname" aria-describedby="fullnameHelp"
+                            placeholder="Họ và tên" required>
+                        <div id="fullnameHelp" class="form-text"></div>
+                    </div>
+                    <div class=" position-relative input__item" style="margin-bottom:25px ;">
+                        <label for="email" class="form-label fs-4 position-absolute"><i
+                                class="bi bi-envelope-fill"></i></label>
+                        <input type="email" class="w-100 rounded-5 " id="email" aria-describedby="emailHelp"
+                            placeholder="Email" required>
+                        <div id="emailHelp" class="form-text"></div>
+                    </div>
+                    <div class="position-relative input__item" style="margin-bottom:20px ;">
+                        <label for="currentPass" class="form-label fs-4 position-absolute"><i
+                                class="fa-solid fa-lock"></i></label>
+                        <input type="password" class="w-100 rounded-5" id="currentPass"
+                            aria-describedby="currentPassHelp" placeholder="Mật khẩu" required>
+                        <div id="currentPassHelp" class="form-text"></div>
+                    </div>
+                    <div class="mb-3 text-center">
+                        <button type="submit" class="btn fw-bold rounded-5 fs-5 w-100"
+                            style="padding: 12px 0; background-color: var(--primary-color); color: #fff;">Cập nhật</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#share">
+        Show modal
+    </button>
+    <div class="modal fade" id="share" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <form class="modal-content" action="" method="post">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Share video</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="p-2">
+                        <input type="email" class="form-control" id="exampleInputEmail1"
+                            placeholder="Nhập vào email người bạn muốn chia sẻ!">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Send</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="container-fluid p-0 overflow-hidden ">
+        <div id="slideHead" class="carousel slide" data-bs-ride="carousel" data-interval="4000" data-bs-pause="false">
+            <div class="carousel-indicators d-none d-md-flex justify-content-end" style="margin: 0 80px 90px 0;">
+                <button type="button" data-bs-target="#slideHead" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#slideHead" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#slideHead" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <a href="video_details.html" class="item__wrapper text-white" style="text-decoration: none;"> <img
+                            src="https://zingchill.com/storage/images/vinh-an-mong-2024/vinh-an-mong.jpg"
+                            class="d-block w-100 vh-100 object-fit-cover" alt="...">
+
+                        <div class="carousel-caption text-start w-75 d-flex flex-column align-items-start">
+                            <h1 class="video__title text-white mb-3" style="font-family: cursive;">Vĩnh An Mộng</h1>
+                            <div class="box__hot d-flex mb-3">
+                                <div class="box__left d-flex">
+                                    <div class="item-1 px-2">Top 1</div>
+                                    <div class="item-2 text-capitalize text-white px-2">Top
+                                        phim thịnh hành</div>
+                                </div>
+                                <div class="box__right fw-bold text-dark px-2 ms-2">VIP</div>
+                            </div>
+                            <div class="box__info d-flex align-items-center mb-3">
+                                <span class="item__rating" style="color: var(--primary-color);"><i
+                                        class="bi bi-star-fill me-2"></i>9.2</span>
+                                <div class="vertical__brick mx-3"></div>
+                                <span class="item__year">2024</span>
+                                <div class="vertical__brick mx-3"></div>
+                                <span class="item_time">45 phút</span>
+                                <div class="vertical__brick mx-3"></div>
+                                <span class="item__update">Trọn bộ 12 tập</span>
+                            </div>
+                            <ul class="box__category list-unstyled mb-3 d-sm-flex d-none" style="font-size: 14px;">
+                                <li class="category__item text-capitalize me-2 px-1">Trung
+                                    quốc đại lục</li>
+                                <li class="category__item text-capitalize me-2 px-1">Kiếm
+                                    hiệp</li>
+                                <li class="category__item text-capitalize me-2 px-1">Lãng
+                                    mạn</li>
+                                <li class="category__item text-capitalize me-2 px-1">Cổ
+                                    trang</li>
+                            </ul>
+                            <div class="box__description text-start w-50 mb-4 d-none d-sm-block">Vĩnh
+                                An Mộng Xoay quanh vụ án kênh đào phía Tây thành, cả hai cùng
+                                trải qua sinh tử, trao nhau lòng tin, cắm sâu rễ tình ...</div>
+                            <div class="box__btn d-flex align-items-center">
+                                <a href="#"
+                                    class="btn__watch btn me-4 d-flex justify-content-center align-items-center fs-4 rounded-circle"
+                                    style="background-color: var(--primary-color); width: 55px; height: 55px;"><i
+                                        class="fa-solid fa-play text-white ms-1 "></i></a>
+                                <button data-bs-toggle="modal" data-bs-target="#share" title="Thích video này"
+                                    class="btn__like btn me-4 d-flex justify-content-center align-items-center fs-3 rounded-circle bg-primary"
+                                    style="width: 55px; height: 55px;">
+                                    <i class="fa-solid fa-thumbs-up text-white"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <button class="btn__control carousel-control-prev my-auto" type="button" data-bs-target="#slideHead"
+                    data-bs-slide="prev">
+                    <i class="fa-solid fa-chevron-left fs-1"></i>
+                </button>
+                <button class="btn__control carousel-control-next my-auto" type="button" data-bs-target="#slideHead"
+                    data-bs-slide="next">
+                    <i class="fa-solid fa-chevron-right fs-1 "></i>
+                </button>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>

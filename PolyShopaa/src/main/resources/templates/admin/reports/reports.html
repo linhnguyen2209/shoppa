@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Báo cáo - Thông kê
+    </title>
+    <link rel="stylesheet" href="../css/layout-admin.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!-- Javascript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <!-- ICon bs5 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <script src="https://kit.fontawesome.com/d524d8e031.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header id="head" class="py-4">
+        <nav id="nav" class="navbar navbar-expand-lg fixed-top ">
+            <div class="container-fluid py-1">
+                <a class="logo navbar-brand fw-bold fs-3" href="pageAdmin.html"><span class="ms-1">SHOPAA</span>
+                    ADMIN</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <form class="d-flex ms-auto rounded-2" style="padding: 2px 0;" role="search">
+                        <input class="ps-3" type="search" placeholder="Tìm kiếm" aria-label="Search">
+                        <button class="btn" type="submit"><i class="bi bi-search me-1"></i></button>
+                    </form>
+                    <ul class="navbar-nav ms-auto mb-lg-0">
+                        <li class="nav-item me-3">
+                            <a class="nav-link" aria-current="page" href="pageAdmin.html">Trang chủ</a>
+                        </li>
+                        <li class="nav-item me-3 dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Quản lý
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="categoryManagement.html">Danh mục</a></li>
+                                <li><a class="dropdown-item" href="productManagement.html">Sản phẩm</a></li>
+                                <li><a class="dropdown-item" href="orderManagement.html">Đặt hàng</a></li>
+                                <li><a class="dropdown-item" href="#">Giỏ hàng</a></li>
+                                <li><a class="dropdown-item" href="userManagement.html">Người dùng</a></li>
+                                <li><a class="dropdown-item text-info" href="#">Khác</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item me-3">
+                            <a class="nav-link" href="reports.html">Báo cáo</a>
+                        </li>
+                        <li class="nav-item ms-3 dropdown position-relative">
+                            <a class="nav-link" href="login.html" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                <i class="bi bi-person-circle fs-3"></i>
+                            </a>
+                            <ul class="dropdown-menu position-absolute end-0">
+                                <li><a class="dropdown-item text-capitalize" href="login.html">Đăng nhập</a></li>
+                                <li><a class="dropdown-item text-capitalize" href="sign_up.html">Đăng ký</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main class=" overflow-hidden container-fluid py-2">
+        <section class="row mt-3 ">
+            <h2 class="text-white w-100 p-0 mb-3 fw-bold ">Report - Statistic</h2>
+            <ul class="nav nav-tabs" id="tabUserManagement" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active fw-bold" id="favorites-tab" data-bs-toggle="tab"
+                        data-bs-target="#favorites-tab-pane" type="button" role="tab" aria-controls="favorites-tab-pane"
+                        aria-selected="true">Favorites</button>
+                </li>
+                <li class="nav-item fw-bold" role="presentation">
+                    <button class="nav-link" id="favoriteUsers-tab" data-bs-toggle="tab"
+                        data-bs-target="#favoriteUsers-tab-pane" type="button" role="tab"
+                        aria-controls="favoriteUsers-tab-pane" aria-selected="false">Favorite Users</button>
+                </li>
+                <li class="nav-item fw-bold" role="presentation">
+                    <button class="nav-link" id="sharedFriends-tab" data-bs-toggle="tab"
+                        data-bs-target="#sharedFriends-tab-pane" type="button" role="tab"
+                        aria-controls="sharedFriends-tab-pane" aria-selected="false">Shared Friends
+                        List</button>
+                </li>
+            </ul>
+            <div class="tab-content p-0" id="tabUserManagementContent">
+                <div class="tab-pane fade show active" id="favorites-tab-pane" role="tabpanel"
+                    aria-labelledby="favorites-tab" tabindex="0">
+                    <div class="px-4 py-4 bg-gradient border overflow-auto">
+                        <table class="table table-hover ">
+                            <thead>
+                                <tr>
+                                    <th scope="col" class="col-4 col-md-5">Video Title</th>
+                                    <th scope="col" class="col-3 col-md-3">Favorite Count</th>
+                                    <th scope="col" class="col-3 col-md-2">Latest Date</th>
+                                    <th scope="col" class="col-2 col-md-2">Oldest Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td scope="row">Lâu ghê mới gặp</td>
+                                    <td>100</td>
+                                    <td>31/12/2023</td>
+                                    <td>01/01/2023</td>
+                                </tr>
+                                <tr>
+                                    <td scope="row">Sau lời từ khước</td>
+                                    <td>150</td>
+                                    <td>31/12/2023</td>
+                                    <td>01/01/2023</td>
+                                </tr>
+                                <tr>
+                                    <td scope="row">Anh chưa quên</td>
+                                    <td>100</td>
+                                    <td>31/12/2023</td>
+                                    <td>01/01/2023</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="favoriteUsers-tab-pane" role="tabpanel"
+                    aria-labelledby="favoriteUsers-tab" tabindex="0">
+                    <div class="px-4 py-4 bg-gradient border overflow-auto">
+                        <select class="form-select mb-3" aria-label="Default select example">
+                            <option selected>Video Title</option>
+                            <option value="1">Lâu ghê mới gặp</option>
+                            <option value="2">Sau lời từ khước</option>
+                            <option value="3">Anh chưa quên</option>
+                        </select>
+                        <table class="table table-hover ">
+                            <thead>
+                                <tr>
+                                    <th scope="col" class="col-4 col-md-2">Username</th>
+                                    <th scope="col" class="col-3 col-md-4">Fullname</th>
+                                    <th scope="col" class="col-2 col-md-3">Email</th>
+                                    <th scope="col" class="col-2 col-md-3">Favorite Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td scope="row">linhnguyen</td>
+                                    <td>Nguyễn Chí Linh</td>
+                                    <td>linhncpd07633@fpt.edu.vn</td>
+                                    <td>01/01/2023</td>
+                                </tr>
+                                <tr>
+                                    <td scope="row">longnguyen</td>
+                                    <td>Nguyễn Văn Long</td>
+                                    <td>longnvpd07633@fpt.edu.vn</td>
+                                    <td>12/3/2023</td>
+                                </tr>
+                                <tr>
+                                    <td scope="row">nguyenvan</td>
+                                    <td>Lê Văn Nguyên</td>
+                                    <td>nguyenlvpd07633@fpt.edu.vn</td>
+                                    <td>01/01/2023</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="sharedFriends-tab-pane" role="tabpanel"
+                    aria-labelledby="sharedFriends-tab" tabindex="0">
+                    <div class="px-4 py-4 bg-gradient border overflow-auto">
+                        <select class="form-select mb-3" aria-label="Default select example">
+                            <option selected>Video Title</option>
+                            <option value="1">Lâu ghê mới gặp</option>
+                            <option value="2">Sau lời từ khước</option>
+                            <option value="3">Anh chưa quên</option>
+                        </select>
+                        <table class="table table-hover ">
+                            <thead>
+                                <tr>
+                                    <th scope="col" class="col-4 col-md-2">Sender Name</th>
+                                    <th scope="col" class="col-3 col-md-4">Sender Email</th>
+                                    <th scope="col" class="col-2 col-md-3">Receiver Email</th>
+                                    <th scope="col" class="col-2 col-md-3">Sent Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td scope="row">Nguyễn Chí Linh</td>
+                                    <td>linhncpd07633@fpt.edu.vn</td>
+                                    <td>linhli2k4@gmail.com</td>
+                                    <td>01/01/2023</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    <footer class="bg-dark">
+        <div class="container pt-5 px-5 px-sm-0">
+            <div class="row">
+                <div class="footernav col-12 col-lg-3 mb-5 mb-lg-0">
+                    <h4 class="text-light fw-bold mb-3 ">GIỚI THIỆU</h4>
+                    <div class="text">
+                        <p>LINH EDU đã dành được nhiều thành tích và khen thưởng.
+                            Các giảng viên luôn tận tâm và có tinh thần giảng dạy rất tốt...</p>
+                    </div>
+                    <div class="d-flex box__icon ">
+                        <a href="#" class="fs-5 me-3 "><i class="bi bi-twitter"></i></a>
+                        <a href="#" class="fs-5 me-3 "><i class="bi bi-github"></i></a>
+                        <a href="#" class="fs-5 me-3 "><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="fs-5 me-3 "><i class="bi bi-facebook"></i></a>
+                    </div>
+                </div>
+                <div class="footernav col-12 col-sm-4 col-lg-2 mb-3 mb-lg-0">
+                    <h4 class="text-light fw-bold mb-3">LIÊN KẾT</h4>
+    
+                    <ul class="list-unstyled">
+                        <li><a href="index.html">Trang chủ</a></li>
+                        <li><a href="introduce.html">Giới thiệu</a></li>
+                        <li><a href="study.html">Khóa học</a></li>
+                        <li><a href="study.html">Làm bài thi</a></li>
+                        <li><a href="contact.html">Liên hệ</a></li>
+                    </ul>
+    
+                </div>
+                <div class="footernav col-12 col-sm-4 col-lg-2 mb-3 mb-lg-0">
+                    <h4 class="text-light fw-bold mb-3">SẢN PHẨM</h4>
+    
+                    <ul class="list-unstyled">
+                        <li><a href="#">Game Nester</a></li>
+                        <li><a href="#">Game Css Diner</a></li>
+                        <li><a href="#">Game CSS Selectors</a></li>
+                        <li><a href="#">Game Froggy</a></li>
+                        <li><a href="#">Game Froggy Pro</a></li>
+                        <li><a href="#">Game Scoops</a></li>
+                    </ul>
+    
+                </div>
+                <div class="footernav col-12 col-sm-4 col-lg-2 mb-3 mb-lg-0">
+                    <h4 class="text-light fw-bold mb-3">CÔNG CỤ</h4>
+    
+                    <ul class="list-unstyled">
+                        <li><a href="#">Tạo CV xin việc</a></li>
+                        <li><a href="#">Rút gọn liên kết</a></li>
+                        <li><a href="#">Clip-path maker</a></li>
+                        <li><a href="#">Snippet generator</a></li>
+                        <li><a href="#">CSS Grid generator</a></li>
+                        <li><a href="#">Cảnh báo sờ tay lên mặt</a></li>
+                    </ul>
+                </div>
+                <div class="footernav col-12 col-lg-3 mb-3 mb-lg-0">
+                    <h4 class="text-light fw-bold mb-3">THÔNG TIN LIÊN HỆ</h4>
+    
+                    <ul class="list-unstyled">
+                        <li><i class="fa-solid fa-location-dot"></i> Mộc Bài 7, Hòa Minh, Liên Chiểu, Đà Nẵng
+                        </li>
+                        <li><i class="fa-solid fa-phone"></i> 0888372325</li>
+                        <li><i class="fa-regular fa-envelope"></i> linhli2k4@gmail.com</li>
+                    </ul>
+                </div>
+                <div class="footernav col-12 col-md-6 pt-5">
+                    <p>&copy; 2024 LINH EDU. Nền tảng học lập trình hàng đầu Việt Nam</p>
+                </div>
+                <div class="footernav col-12 col-md-6 d-flex justify-content-md-end pt-3 pe-4">
+                    <a href="#" class="fs-1 me-4 my-auto"><i class="bi bi-youtube text-danger"></i></a>
+                    <a href="#"
+                        class="icon__tiktok fs-4 me-4 my-auto shadow bg-black rounded-circle d-flex justify-content-center align-items-center"
+                        style="width: 40px; height: 40px;"><i class="bi bi-tiktok text-light"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

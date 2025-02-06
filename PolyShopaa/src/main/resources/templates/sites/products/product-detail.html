@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{/sites/layout/layout.html}">
+
+<head>
+    <title>Loa Bluetooth Mini Không Dây Alpha Mart</title>
+    <th:block layout:fragment="css">
+        <link rel="stylesheet" th:href="@{/css/product-detail.css}" />
+    </th:block>
+</head>
+
+<body>
+    <section layout:fragment="content" class="container px-4 py-3 mt-3 bg-white">
+        <div class="product-detail">
+            <form th:action="@{/shopaa/sites/cart/add}" method="post">
+                <div class="row">
+                    <input type="hidden" name="productId" th:value="${product.productId}">
+                    <div class="col-lg-5 p-2">
+                        <div class="product-images">
+                            <img th:src="@{|${product.image}|}" alt="Product Image" width="100%" height="500"
+                                class="rounded-0 object-fit-cover">
+                        </div>
+                    </div>
+                    <div class="col-lg-7 product-info p-3">
+                        <h2 class="product-title" th:text="${product.name}"></h2>
+                        <div class="rating mt-3">
+                            <span class="me-2" style="color: var(--primary-color);"> 4.3 </span>
+                            <span class="star_icon" style="color: var(--primary-color);">
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-half"></i>
+                                <i class="bi bi-star"></i>
+                            </span>
+                            <span class="mx-2">|</span>
+                            <span>(588 Đánh Giá)</span>
+                            <span class="mx-2">|</span>
+                            <span>2.1k Đã Bán</span>
+                        </div>
+                        <div class="product-price mt-4 px-4 py-2 d-flex align-items-center"
+                            style="color: var(--primary-color); background: #7e78781b;">
+                            <span class="product-old-price me-3 text-decoration-line-through text-secondary"
+                                th:text="${'$' + product.price}"></span>
+                            <span class="product-new-price fs-2" th:text="${newPrice}"></span>
+                            <span class="badge text-bg-danger ms-3"
+                                th:text="${product.discount * 100 + '% GIẢM'}"></span>
+                        </div>
+
+
+                        <div class="product-variations mt-4">
+                            <div class="text-secondary fs-5 mb-2">Màu sắc:</div>
+                            <div class="color-options">
+                                <button class="btn btn-outline-danger">Đỏ</button>
+                                <button class="btn btn-outline-warning">Vàng</button>
+                                <button class="btn btn-outline-success">Xanh lá</button>
+                                <button class="btn btn-outline-dark">Đen</button>
+                            </div>
+                        </div>
+                        <div class="product-quantity mt-5 d-flex align-items-center">
+                            <label for="" class="form-label text-secondary fs-5 me-4">Số lượng:</label>
+                            <div class="d-flex mb-2" style="max-width: 300px">
+                                <button type="button"
+                                    class="btn btn-sm rounded-0 text-light"
+                                    style="background-color: var(--primary-color);"
+                                    onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                                <div data-mdb-input-init class="form-outline">
+                                    <input id="form1" min="1" name="quantity" value="1" type="number"
+                                        style="width: 55px;" class="form-control rounded-0 text-center" />
+                                </div>
+                                <button type="button"
+                                    class="btn btn-sm rounded-0 text-light"
+                                    style="background-color: var(--primary-color);"
+                                    onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="buy-buttons mt-5">
+                            <button type="submit" class="btn rounded-0 btn-outline-danger py-2 px-2 me-3"
+                                style="color: var(--primary-color); background: #dcd2c9d3;">
+                                <i class="bi bi-cart-plus me-2"></i>Thêm Vào Giỏ Hàng
+                            </button>
+                            <button type="submit" class="btn rounded-0 py-2 px-5 text-white"
+                                style="background: var(--primary-color);">Mua
+                                Ngay
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <hr>
+        <div class="row mt-5">
+            <div class="col-12">
+                <h3 class="text-center mb-3">Mô tả sản phẩm</h3>
+                <p th:text="${product.description}">Mô tả sản phẩm mặc định.</p>
+            </div>
+        </div>
+        <hr>
+        <div class="row mt-5">
+            <div class="col-12">
+                <h3 class="text-center mb-3">Đánh giá sản phẩm</h3>
+                <div class="d-flex">
+                    <div class="mr-3">
+                        <img src="https://www.w3schools.com/howto/img_avatar.png" alt="Ảnh đại diện"
+                            class="rounded-circle" width="50" height="50">
+                        <div class="ml-2">
+                            <span class="font-weight-bold">Nguyễn Văn A</span>
+                            <p class="mb-0">2023-12-31</p>
+                        </div>
+                    </div>
+                    <div>
+                        <p>Loa nghe hay, âm thanh to và rõ ràng. Pin dùng được lâu. Shop giao hàng nhanh, đóng gói
+                            cẩn
+                            thận.</p>
+                        <span class="text-warning"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i
+                                class="far fa-star"></i></span>
+                    </div>
+                </div>
+                <div class="d-flex mt-3">
+                    <div class="mr-3">
+                        <img src="https://www.w3schools.com/howto/img_avatar.png" alt="Ảnh đại diện"
+                            class="rounded-circle" width="50" height="50">
+                        <div class="ml-2">
+                            <span class="font-weight-bold">Trần Thị B</span>
+                            <p class="mb-0">2024-01-05</p>
+                        </div>
+                    </div>
+                    <div>
+                        <p>Sản phẩm chất lượng tốt, giá cả hợp lý. Rất hài lòng với dịch vụ của shop.</p>
+                        <span class="text-warning"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row mt-5">
+            <div class="col-12">
+                <h3 class="text-center mb-3">Sản phẩm liên quan</h3>
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <div class="card">
+                            <img src="https://www.thegioididong.com/sforum/2022/09/13/13321001/image-resize-1000x1000-0-0-0-speaker-bluetooth-jbl-flip-6-black.jpg"
+                                alt="Loa Bluetooth JBL Flip 6" class="card-img-top">
+                            <div class="card-body">
+                                <h5 class="card-title">Loa Bluetooth JBL Flip 6</h5>
+                                <p class="card-text">Giá: 3.290.000
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="card">
+                            <img src="https://cdn.tgdd.vn/Products/Images/2022/04/28/1221078/loa-bluetooth-jbl-charge-5-den-new-1.jpg"
+                                alt="Loa Bluetooth JBL Charge 5" class="card-img-top">
+                            <div class="card-body">
+                                <h5 class="card-title">Loa Bluetooth JBL Charge 5</h5>
+                                <p class="card-text">Giá: 4.290.000 ₫</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="card">
+                            <img src="https://cdn.tgdd.vn/Products/Images/2022/07/08/1235406/loa-bluetooth-sony-srs-xb43-den.jpg"
+                                alt="Loa Bluetooth Sony SRS-XB43" class="card-img-top">
+                            <div class="card-body">
+                                <h5 class="card-title">Loa Bluetooth Sony SRS-XB43</h5>
+                                <p class="card-text">Giá: 5.690.000 ₫</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

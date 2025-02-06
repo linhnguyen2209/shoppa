@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{/admin/layout/layout.html}">
+
+<head>
+    <title>Order Management</title>
+    <th:block layout:fragment="css">
+        <!-- <link rel="stylesheet" th:href="@{}" /> -->
+    </th:block>
+</head>
+
+<body>
+    <section layout:fragment="content" class="row mt-3 ">
+        <h2 class="text-white w-100 p-0 mb-3 fw-bold">Order Management</h2>
+        <ul class="nav nav-tabs" id="tabOrderManagement" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active fw-bold" id="OrderEdition-tab" data-bs-toggle="tab"
+                    data-bs-target="#OrderEdition-tab-pane" type="button" role="tab"
+                    aria-controls="OrderEdition-tab-pane" aria-selected="true">Order Edition</button>
+            </li>
+            <li class="nav-item fw-bold" role="presentation">
+                <button class="nav-link" id="OrderList-tab" data-bs-toggle="tab" data-bs-target="#OrderList-tab-pane"
+                    type="button" role="tab" aria-controls="OrderList-tab-pane" aria-selected="false">Order
+                    List</button>
+            </li>
+        </ul>
+        <div class="tab-content p-0" id="tabOrderManagementContent">
+            <!-- Order Edition Tab -->
+            <div class="tab-pane fade show active" id="OrderEdition-tab-pane" role="tabpanel"
+                aria-labelledby="OrderEdition-tab" tabindex="0">
+                <form action="@{/shopaa/admin/orders/update}" method="post"
+                    class="px-3 py-4 d-flex justify-content-center border bg-gradient">
+                    <div class="row w-100 p-0">
+                        <div class="mb-3 col-12 col-sm-6">
+                            <label for="orderId" class="form-label text-white fw-bold">Order Id:</label>
+                            <input type="text" class="form-control" id="orderId" name="orderId"
+                                th:value="${orderDto.orderId}" readonly>
+                        </div>
+                        <div class="mb-3 col-12 col-sm-6">
+                            <label for="orderDate" class="form-label text-white fw-bold">Order Date:</label>
+                            <input type="date" class="form-control" id="orderDate" th:value="${orderDto.orderDate}"
+                                readonly>
+                        </div>
+                        <div class="mb-3 col-12 col-sm-6">
+                            <label for="shippingAddress" class="form-label text-white fw-bold">Shipping
+                                Address:</label>
+                            <input type="text" class="form-control" id="shippingAddress"
+                                th:value="${orderDto.shippingAddress}" readonly>
+                        </div>
+                        <div class="mb-3 col-12 col-sm-6">
+                            <label for="phoneNumber" class="form-label text-white fw-bold">Phone Number:</label>
+                            <input type="text" class="form-control" id="phoneNumber" th:value="${orderDto.phoneNumber}"
+                                readonly>
+                        </div>
+                        <div class="mb-3 col-12 col-sm-6">
+                            <label for="total" class="form-label text-white fw-bold">Total Price:</label>
+                            <input type="text" class="form-control" id="total" th:value="${orderDto.total}" readonly>
+                        </div>
+                        <div class="mb-3 col-12 col-sm-6">
+                            <label for="username" class="form-label text-white fw-bold">Username:</label>
+                            <input type="text" class="form-control" id="username" th:value="${orderDto.username}"
+                                readonly>
+                        </div>
+                        <div class="mb-3 col-12 col-sm-6">
+                            <label for="status" class="form-label text-white fw-bold">Status:</label>
+                            <div class="form-check">
+                                <label class="text-light"><input type="radio" class="form-check-input" name="status"
+                                        value="0" th:checked="${orderDto.status == 0}">Pending</label>
+                                <label class="ms-5 text-light"><input type="radio" class="form-check-input"
+                                        name="status" value="1" th:checked="${orderDto.status == 1}">Processed</label>
+                                <label class="ms-5 text-light"><input type="radio" class="form-check-input"
+                                        name="status" value="2" th:checked="${orderDto.status == 2}">Delivering</label>
+                                <label class="ms-5 text-light"><input type="radio" class="form-check-input"
+                                        name="status" value="3" th:checked="${orderDto.status == 3}">Delivered</label>
+                                <label class="ms-5 text-light"><input type="radio" class="form-check-input"
+                                        name="status" value="4" th:checked="${orderDto.status == 4}">Cancelled</label>
+                            </div>
+                        </div>
+                        <div class="col-12 text-end">
+                            <button type="reset" class="btn btn-outline-warning me-sm-2 mb-sm-0 mb-2">Reset</button>
+                            <button th:if="${isEditing}" type="submit"
+                                class="btn btn-outline-primary me-sm-2 mb-sm-0 mb-2">Update</button>
+                        </div>
+                    </div>
+                </form>
+
+                <h2 class="text-white w-100 py-2 mt-4 fw-bold">List Order Detail Of Order ID: <span
+                        style="color: var(--primary-color);" th:text="${orderDto.orderId}">112</span></h2>
+                <div class="px-4 py-4 bg-gradient border overflow-auto">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col" class="col-3">Order Detail Id</th>
+                                <th scope="col" class="col-3">OrderId</th>
+                                <th scope="col" class="col-2">ProductId</th>
+                                <th scope="col" class="col-2">Quantity</th>
+                                <th scope="col" class="col-2 overflow-x-hidden">Unit Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="detail : ${orderDetails}">
+                                <td scope="row" th:text="${detail.orderDetailId}"></td>
+                                <td th:text="${detail.order.orderId}"></td>
+                                <td th:text="${detail.product.productId}"></td>
+                                <td th:text="${detail.quantity}"></td>
+                                <td th:text="${'$' + detail.unitPrice}"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="col-12 mt-4 d-flex justify-content-between w-100">
+                        <div class="total_item text-white fs-5">Orders detail: </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Order List Tab -->
+            <div class="tab-pane fade" id="OrderList-tab-pane" role="tabpanel" aria-labelledby="OrderList-tab"
+                tabindex="0">
+                <div class="px-4 py-4 bg-gradient border overflow-auto">
+                    <form class="search d-flex mb-3" style="padding: 2px 0;" role="search"
+                        th:action="@{/shopaa/admin/orders/search}" method="get">
+                        <input class="ps-3" type="search" name="query" placeholder="Search" aria-label="Search">
+                        <button class="btn" type="submit"><i class="bi bi-search me-1"></i></button>
+                    </form>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col" class="col-1">Order Id</th>
+                                <th scope="col" class="col-2">Username</th>
+                                <th scope="col" class="col-2">Order Date</th>
+                                <th scope="col" class="col-3 overflow-x-hidden">ShippingAddress</th>
+                                <th scope="col" class="col-2">Status</th>
+                                <th scope="col" class="col-1">Total</th>
+                                <th scope="col" class="col-1"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="order : ${orders}">
+                                <td scope="row" th:text="${order.orderId}"></td>
+                                <td th:text="${order.user.username}"></td>
+                                <td th:text="${order.orderDate}"></td>
+                                <td th:text="${order.shippingAddress}"></td>
+                                <td>
+                                    <span th:switch="${order.status}">
+                                        <span class="text-black" th:case="0">Pending</span>
+                                        <span class="text-black" th:case="1">Processed</span>
+                                        <span class="text-black" th:case="2">Delivering</span>
+                                        <span class="text-black" th:case="3">Delivered</span>
+                                        <span class="text-black" th:case="4">Cancelled</span>
+                                        <span class="text-black" th:case="*">Unknown</span>
+                                    </span>
+                                </td>
+                                <td th:text="${order.total}"></td>
+                                <td>
+                                    <a th:href="@{/shopaa/admin/orders/edit/{id}(id=${order.orderId})}" class="pe-3"
+                                        onclick="openEditTab('#orderEdition-tab-pane')"><i class="bi bi-pencil"></i></a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="col-12 mt-4 d-flex justify-content-between w-100">
+                        <div class="total_item text-white fs-5">Orders</div>
+                        <ul th:if="${orderPage.totalPages} > 0" class="pagination rounded-0 m-0" id="pagination">
+                            <li class="page-item"><a class="btn btn-outline-light rounded-0"
+                                    th:href="@{/shopaa/admin/orders?(page=0, size=${orderPage.size}, keyword=${keyword})}">First</a>
+                            </li>
+                            <li class="page-item" th:each="i : ${#numbers.sequence(0, orderPage.totalPages - 1)}">
+                                <a class="btn btn-outline-light rounded-0"
+                                    th:href="@{/shopaa/admin/orders?(page=${i} ,size=${orderPage.size}, keyword=${keyword})}"
+                                    th:text="${i + 1}"></a>
+                            </li>
+                            <li class="page-item"><a class="btn btn-outline-light rounded-0"
+                                    th:href="@{/shopaa/admin/orders?(page=${orderPage.totalPages - 1},size=${orderPage.size}, keyword=${keyword})}">Last</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

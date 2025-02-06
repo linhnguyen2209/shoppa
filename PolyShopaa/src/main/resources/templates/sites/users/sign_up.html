@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{/sites/layout/layout.html}">
+<!-- Sử dụng lại bố cục của trang layout và chỉ ghi đè phần content -->
+
+<head>
+    <title>Registration Page</title>
+    <th:block layout:fragment="css">
+        <link rel="stylesheet" th:href="@{/css/form.css}" />
+    </th:block>
+
+</head>
+
+<body>
+    <header layout:fragment="header" class="fixed-top">
+    </header>
+    <div layout:fragment="content" class="min-vh-100" id="container">
+        <nav class="navbar navbar-expand-lg py-2">
+            <div class="container-fluid py-1 mt-2">
+                <a class="logo navbar-brand fw-bold fs-3" th:href="@{/shopaa/sites/home}">SHOPAA</a>
+            </div>
+        </nav>
+        <div class="container d-flex justify-content-center align-items-center">
+            <div class="row h-100 w-100">
+                <div class="col-xl-7 d-none d-xl-flex justify-content-center align-items-center">
+                    <img class="object-fit-cover w-75" src="/images/login_img-removebg.png" alt="login">
+                </div>
+                <div class="col-12 col-md-10 col-lg-7 col-xl-5 d-flex justify-content-center align-items-center m-auto">
+                    <div class="form p-5 rounded-3">
+                        <h2 class="mb-4 p-2 text-center fs-2 fw-bold">ĐĂNG KÝ</h2>
+                        <form th:action="@{/shopaa/sites/register}" th:object="${registerDto}" method="post">
+                            <div class="position-relative input__item mb-3">
+                                <label for="username" class="form-label fs-4 position-absolute"><i
+                                        class="bi bi-person-fill"></i></label>
+                                <input type="text" class="w-100 rounded-5" id="username" th:field="*{username}"
+                                    placeholder="Tên đăng nhập" aria-describedby="messageUsername" required>
+                                <small id="messageUsername" class="form-text text-danger ms-3"
+                                    th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></small>
+                            </div>
+                            <div class="position-relative input__item mb-3">
+                                <label for="fullname" class="form-label fs-4 position-absolute"><i
+                                        class="fa-solid fa-signature"></i></label>
+                                <input type="text" class="w-100 rounded-5" id="fullname" th:field="*{fullName}"
+                                    placeholder="Họ và tên" required>
+                                <small id="messageFullname" class="form-text text-danger ms-3"
+                                    th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}"></small>
+                            </div>
+                            <div class="position-relative input__item mb-3">
+                                <label for="email" class="form-label fs-4 position-absolute"><i
+                                        class="bi bi-envelope-fill"></i></label>
+                                <input type="email" class="w-100 rounded-5" id="email" th:field="*{email}"
+                                    placeholder="Email" required>
+                                <small id="messageEmail" class="form-text text-danger ms-3"
+                                    th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small>
+                            </div>
+                            <div class="position-relative input__item mb-3">
+                                <label for="password" class="form-label fs-4 position-absolute"><i
+                                        class="fa-solid fa-lock"></i></label>
+                                <input type="password" class="w-100 rounded-5" id="password" th:field="*{password}"
+                                    placeholder="Mật khẩu" required>
+                                <small id="messagePass" class="form-text text-danger ms-3"
+                                    th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></small>
+                            </div>
+                            <div class="form-check ms-2 mb-3">
+                                <input type="checkbox" class="form-check-input border-0 rounded-0 border-black p-2"
+                                    id="checkbox">
+                                <label class="form-check-label text-secondary" for="checkbox">Tôi đồng ý với <a href="#"
+                                        class="fw-bold text-secondary">điều khoản & điều kiện</a></label>
+                            </div>
+                            <div class="mb-4 text-center">
+                                <button type="submit" class="btn fw-bold rounded-5 fs-5 w-100"
+                                    style="padding: 12px 0; background-color: var(--primary-color); color: #fff;">Đăng
+                                    ký</button>
+                            </div>
+                            <div class="text-center text-secondary">
+                                Bạn đã có tài khoản? <a class="fw-bold text-secondary ms-1"
+                                    th:href="@{/shopaa/sites/login}">Đăng
+                                    nhập</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

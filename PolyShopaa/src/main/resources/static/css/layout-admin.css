@@ -1,0 +1,223 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+:root {
+    --page-color: #111319;
+    --primary-color: #ee4d2d;
+    --text-color: rgba(255, 255, 255, 0.895);
+}
+
+body p,
+span,
+li {
+    color: var(--text-color);
+}
+
+body .title {
+    color: white;
+}
+
+/* _______________HEADER_______________ */
+
+body header {
+    background-color: var(--page-color);
+}
+
+header .navbar {
+    padding: 0 60px;
+    transition: 0.5s;
+}
+
+header .navbar {
+    background: black;
+}
+
+header .navbar .logo {
+    color: var(--primary-color);
+    text-shadow: 0px 0px 2px var(--primary-color);
+}
+
+.navbar .logo span {
+    color: var(--primary-color);
+}
+
+.navbar .nav-item {
+    display: flex;
+    align-items: center;
+}
+
+.navbar .nav-item .nav-link {
+    color: var(--text-color);
+    text-shadow: 0px 0px 1px var(--text-color);
+    font-size: 17px;
+}
+
+.navbar .nav-item .nav-link.active {
+    color: var(--primary-color);
+    text-shadow: 0px 0px 1px var(--primary-color);
+    font-weight: bold;
+}
+
+.navbar .nav-link:hover {
+    color: var(--primary-color);
+    text-shadow: 0px 0px 1px var(--primary-color);
+}
+
+.navbar .dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0;
+    top: 50px;
+}
+
+.dropdown .dropdown-menu {
+
+    background-color: var(--page-color);
+    border: 1px solid rgb(136, 129, 129);
+}
+
+.dropdown .dropdown-menu .dropdown-item {
+    color: var(--text-color);
+}
+
+.dropdown .dropdown-menu .dropdown-item:hover {
+    background-color: #413d3d;
+}
+
+/* _______________MAIN_______________ */
+body main {
+    background-color: var(--page-color);
+}
+
+main section {
+    /* background-color: rgb(241, 245, 214); */
+    padding: 40px 75px;
+}
+
+section form.search {
+    background-color: #ffffff;    
+    width: 260px;
+}
+
+form.search input[type="search"] {
+    background-color: transparent;
+    outline: 0;
+    border: none;
+    color: rgb(37, 36, 36);
+    font-size: 16px;
+}
+
+form.search .btn {
+    outline: 0;
+    border: none;
+    color: rgb(128, 123, 123);
+}
+
+form.search .btn i {
+    transition: 0.3s;
+}
+
+form.search .btn:hover i {
+    color: var(--primary-color);
+}
+
+::-webkit-input-placeholder {
+    /* WebKit, Blink, Edge */
+    color: rgb(128, 123, 123);
+}
+
+:-moz-placeholder {
+    /* Mozilla Firefox 4 to 18 */
+    color: rgb(128, 123, 123);
+    opacity: 1;
+}
+
+::-moz-placeholder {
+    /* Mozilla Firefox 19+ */
+    color: rgb(128, 123, 123);
+    opacity: 1;
+}
+
+:-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: rgb(128, 123, 123);
+}
+
+::-ms-input-placeholder {
+    /* Microsoft Edge */
+    color: rgb(128, 123, 123);
+}
+
+::placeholder {
+    /* Most modern browsers support this now. */
+    color: rgb(128, 123, 123);
+}
+/* _______________FOOTER_______________ */
+
+footer {
+    padding: 30px;
+}
+
+footer .footernav p,
+.footernav li,
+.footernav div,
+.footernav a {
+    color: #ffffff8d;
+    text-decoration: none;
+}
+
+.footernav a {
+    display: block;
+    padding: 3px 0px;
+    transition: all 0.3s;
+}
+
+.footernav a:hover {
+    color: #ffffff;
+}
+
+.footernav .box__icon a {
+    color: var(--primary-color);
+}
+
+.footernav .box__icon a:hover {
+    color: #4c5e37;
+}
+
+.footernav .icon__tiktok {
+    transition: all 0.3s;
+}
+
+.footernav .icon__tiktok:hover {
+    transform: rotateY(360deg);
+}
+
+body .btn__go-up {
+    position: fixed;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid rgba(197, 187, 187, 0.474);
+    bottom: 20px;
+    right: 15px;
+    transition: all 0.3s;
+    z-index: 999;
+}
+
+.btn__go-up i {
+    color: #ffffff6e;
+    transition: all 0.3s;
+}
+
+.btn__go-up:hover {
+    background: var(--primary-color);
+    box-shadow: 0px 0px 10px #000000;
+    border: 2px solid black;
+}
+
+.btn__go-up:hover i {
+    color: #000000;
+}

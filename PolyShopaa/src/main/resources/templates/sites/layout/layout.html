@@ -1,0 +1,177 @@
+<!-- layout.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <title>My Site</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/layout.css}" />
+    <link rel="stylesheet" th:href="@{/css/modalMessage.css}" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!-- Javascript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <!-- ICon bs5 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <script src="https://kit.fontawesome.com/d524d8e031.js" crossorigin="anonymous"></script>
+
+    <!-- Để chèn phần css, js của trang con vào phần này -->
+    <th:block layout:fragment="css"></th:block>
+</head>
+
+<body>
+    <header layout:fragment="header" class="fixed-top">
+        <nav class="container navbar-custom p-0 ">
+            <!-- Top Nav -->
+            <div class="navbar-top">
+                <div>
+                    <a href="#">Kênh Người Bán</a>
+                    <div class="decan">|</div>
+                    <a href="#">Tải Ứng Dụng</a>
+                    <div class="decan">|</div>
+                    <a href="#">Kết Nối</a>
+                    <a href="#"><i class="bi bi-facebook"></i></a>
+                    <a href="#"><i class="bi bi-instagram"></i></a>
+                </div>
+                <div>
+                    <a href="#"><i class="bi bi-bell"></i> Thông Báo</a>
+                    <a href="#"><i class="bi bi-question-circle"></i> Hỗ Trợ</a>
+                    <a href="#"><i class="bi bi-globe"></i> Tiếng Việt</a>
+                </div>
+            </div>
+
+            <!-- Middle Nav -->
+            <div class="navbar-middle w-100">
+                <a class="navbar-brand fs-3 text-white px-3" th:href="@{/shopaa/sites/home}"><i
+                        class="bi bi-bag-fill fs-1 me-2"></i>Shopaa</a>
+                <form class="d-flex search-bar mx-auto">
+                    <input class="form-control me-2 px-4 py-2" type="search" placeholder="Siêu Hội Chống Nắng"
+                        aria-label="Search">
+                    <button class="btn btn-light text-danger" type="submit">Search</button>
+                </form>
+                <div class="box__cartAndaccount d-flex align-items-center px-3 ">
+                    <a th:href="@{/shopaa/sites/cart}" class="d-block position-relative me-5 link-light"><i class="bi bi-cart fs-4"></i> <span
+                            class="badge bg-light position-absolute"
+                            style="left: 16px; top: -3px; color: var(--primary-color);" th:text="${session.totalCartItem}"></span></a>
+
+                </div>
+                <th:block th:if="${session.loggedInUser == null}">
+                    <div class="dropdown position-relative">
+                        <a class=" d-flex align-items-center link-light text-decoration-none" role="button"
+                            data-bs-toggle="dropdown"><i class="bi bi-person-circle fs-3 me-2"></i></a>
+                        <ul class="dropdown-menu position-absolute end-0">
+                            <li><a class="dropdown-item text-capitalize" th:href="@{/shopaa/sites/login}">Đăng nhập</a>
+                            </li>
+                            <li><a class="dropdown-item text-capitalize" th:href="@{/shopaa/sites/register}">Đăng ký</a>
+                            </li>
+                        </ul>
+                    </div>
+                </th:block>
+                <th:block th:if="${session.loggedInUser != null}">
+                    <div class="dropdown position-relative">
+                        <a class=" d-flex align-items-center link-light text-decoration-none" role="button"
+                            data-bs-toggle="dropdown"><span th:text="${session.loggedInUser.username}"
+                                class="text-white fw-bold me-2">
+                            </span><i class="bi bi-person-circle fs-3 me-2"></i></a>
+                        <ul class="dropdown-menu position-absolute end-0">
+                            <li th:if="${session.loggedInUser.role == 'ROLE_ADMIN'}"><a class="dropdown-item text-capitalize" th:href="@{/shopaa/admin/home}">Trang Admin</a>
+                            </li>
+                            <li><a class="dropdown-item text-capitalize" th:href="@{/shopaa/sites/logout}">Đăng xuất</a>
+                            </li>
+                        </ul>
+                    </div>
+                </th:block>
+            </div>
+
+            <!-- Bottom Nav -->
+            <div class="navbar-bottom">
+                <a href="#">Chuột Không Dây</a>
+                <a href="#">Set Đồ Nữ</a>
+                <a href="#">Macbook Air M1</a>
+                <a href="#">iPhone 15 Pro Max</a>
+                <a href="#">Gấu Bông Capybara</a>
+                <a href="#">Đồ Ăn Vặt</a>
+                <a href="#">Điện Thoại Gập OPPO</a>
+                <a href="#">Apple Flagship Store</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="pb-5">
+        <div layout:fragment="content"></div>
+    </main>
+
+    <footer layout:fragment="footer" class="bg-dark">
+        <div class="container pt-5 px-5 px-sm-0">
+            <div class="row">
+                <div class="footernav col-12 col-lg-3 mb-5 mb-lg-0">
+                    <h4 class="text-light fw-bold mb-3">GIỚI THIỆU</h4>
+                    <div class="text">
+                        <p>SHOPAA - nơi bạn khám phá thế giới mua sắm trực tuyến với những sản phẩm đa dạng, chất lượng
+                            cao và trải nghiệm mua sắm tuyệt vời.</p>
+                    </div>
+                    <div class="d-flex box__icon">
+                        <a href="#" class="fs-5 me-3"><i class="bi bi-twitter"></i></a>
+                        <a href="#" class="fs-5 me-3"><i class="bi bi-github"></i></a>
+                        <a href="#" class="fs-5 me-3"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="fs-5 me-3"><i class="bi bi-facebook"></i></a>
+                    </div>
+                </div>
+                <div class="footernav col-12 col-sm-4 col-lg-2 mb-3 mb-lg-0">
+                    <h4 class="text-light fw-bold mb-3">LIÊN KẾT</h4>
+                    <ul class="list-unstyled">
+                        <li><a href="HomePage">Trang chủ</a></li>
+                        <li><a href="Favourite">Yêu thích</a></li>
+                        <li><a href="Contact">Liên hệ</a></li>
+                    </ul>
+                </div>
+                <div class="footernav col-12 col-sm-4 col-lg-2 mb-3 mb-lg-0">
+                    <h4 class="text-light fw-bold mb-3">SẢN PHẨM</h4>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Thời trang nữ</a></li>
+                        <li><a href="#">Thời trang nam</a></li>
+                        <li><a href="#">Phụ kiện</a></li>
+                        <li><a href="#">Giày dép</a></li>
+                        <li><a href="#">Mỹ phẩm</a></li>
+                    </ul>
+                </div>
+                <div class="footernav col-12 col-sm-4 col-lg-2 mb-3 mb-lg-0">
+                    <h4 class="text-light fw-bold mb-3">HỖ TRỢ</h4>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Chính sách bảo hành</a></li>
+                        <li><a href="#">Chính sách đổi trả</a></li>
+                        <li><a href="#">Chính sách vận chuyển</a></li>
+                        <li><a href="#">Câu hỏi thường gặp</a></li>
+                    </ul>
+                </div>
+                <div class="footernav col-12 col-lg-3 mb-3 mb-lg-0">
+                    <h4 class="text-light fw-bold mb-3">THÔNG TIN LIÊN HỆ</h4>
+                    <ul class="list-unstyled">
+                        <li><i class="fa-solid fa-location-dot"></i> Mộc Bài 7, Hòa
+                            Minh, Liên Chiểu, Đà Nẵng</li>
+                        <li><i class="fa-solid fa-phone"></i> 0888372325</li>
+                        <li><i class="fa-regular fa-envelope"></i>
+                            linhli2k4@gmail.com</li>
+                    </ul>
+                </div>
+                <div class="footernav col-12 col-md-6 pt-5">
+                    <p>&copy; 2024 Shopaa. Nền tảng mua sắm hàng đầu Việt Nam</p>
+                </div>
+                <div class="footernav col-12 col-md-6 d-flex justify-content-md-end pt-3 pe-4">
+                    <a href="#" class="fs-1 me-4 my-auto"><i class="bi bi-youtube text-danger"></i></a>
+                    <a href="#"
+                        class="icon__tiktok fs-4 me-4 my-auto shadow bg-black rounded-circle d-flex justify-content-center align-items-center"
+                        style="width: 40px; height: 40px;"><i class="bi bi-tiktok text-light"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <th:block th:replace="~{/sites/fragments/messageModal}"></th:block>
+    <th:block layout:fragment="js"></th:block>
+    <script src="/js/script.js"></script>
+</body>
+
+</html>

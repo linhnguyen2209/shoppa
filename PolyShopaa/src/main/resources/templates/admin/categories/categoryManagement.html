@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{/admin/layout/layout.html}">
+
+<head>
+    <title>Category Management</title>
+    <th:block layout:fragment="css">
+        <!-- <link rel="stylesheet" th:href="@{}" /> -->
+    </th:block>
+</head>
+
+<body>
+    <section layout:fragment="content" class="row mt-3 ">
+        <h2 class="text-white w-100 p-0 mb-3 fw-bold ">Category Management</h2>
+        <ul class="nav nav-tabs" id="tabCategoryManagement" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active fw-bold" id="categoryEdition-tab" data-bs-toggle="tab"
+                    data-bs-target="#categoryEdition-tab-pane" type="button" role="tab"
+                    aria-controls="categoryEdition-tab-pane" aria-selected="true">Category Edition</button>
+            </li>
+            <li class="nav-item fw-bold" role="presentation">
+                <button class="nav-link" id="categoryList-tab" data-bs-toggle="tab"
+                    data-bs-target="#categoryList-tab-pane" type="button" role="tab"
+                    aria-controls="categoryList-tab-pane" aria-selected="false">Category
+                    List</button>
+            </li>
+        </ul>
+        <div class="tab-content p-0" id="tabCategoryManagementContent">
+            <div class="tab-pane fade show active" id="categoryEdition-tab-pane" role="tabpanel"
+                aria-labelledby="categoryEdition-tab" tabindex="0">
+                <form th:action="@{/shopaa/admin/categories}" th:object="${categoryDto}" method="post"
+                    class="px-3 py-4 d-flex justify-content-center border bg-gradient" id="objectForm">
+                    <div class="row w-100 p-0">
+                        <div class="mb-3 col-12 col-sm-6">
+                            <label for="categoryId" class="form-label text-white fw-bold">Category Id</label>
+                            <input type="text" th:field="*{categoryId}" class="form-control" id="categoryId" readonly>
+                        </div>
+                        <div class="mb-3 col-12 col-sm-6">
+                            <label for="categoryName" class="form-label text-white fw-bold">Category Name</label>
+                            <input type="text" th:field="*{categoryName}" class="form-control" id="categoryName"
+                                aria-describedby="messageName">
+                            <small id="messageName" class="form-text text-danger"
+                                th:if="${#fields.hasErrors('categoryName')}" th:errors="*{categoryName}"></small>
+                        </div>
+                        <div class="col-12 mt-3 text-end">
+                            <a class="btn btn-outline-warning me-2" th:href="@{/shopaa/admin/categories/reset}">Reset</a>
+                            <button type="button" class="btn btn-outline-success me-2"
+                                onclick="submitForm('/shopaa/admin/categories/save')"
+                                th:if="${isEditing} == false">Create</button>
+                            <button type="button" class="btn btn-outline-primary me-2"
+                                onclick="submitForm('/shopaa/admin/categories/save')"
+                                th:if="${isEditing} == true">Update</button>
+                            <!-- <button type="button" class="btn btn-outline-danger me-2"
+                                onclick="submitForm('/shopaa/admin/categories/delete')"
+                                th:if="${isEditing} == true">Delete</button> -->
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="tab-pane fade" id="categoryList-tab-pane" role="tabpanel" aria-labelledby="categoryList-tab"
+                tabindex="0">
+                <div class="px-4 py-4 bg-gradient border overflow-auto">
+                    <form class="search d-flex mb-3" th:action="@{/shopaa/admin/categories/search}" method="get"
+                        style="padding: 2px 0;" role="search">
+                        <input class="ps-3" type="search" name="keyword" th:value="${keyword}" placeholder="Search"
+                            aria-label="Search">
+                        <button class="btn" type="submit"><i class="bi bi-search me-1"></i></button>
+                    </form>
+                    <table class="table table-hover ">
+                        <thead>
+                            <tr>
+                                <th scope="col" class="col-3">Category Id</th>
+                                <th scope="col" class="col-8">Category Name</th>
+                                <th scope="col" class="col-1"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="category : ${categories}">
+                                <td scope="row" th:text="${category.categoryId}"></td>
+                                <td th:text="${category.categoryName}"></td>
+                                <td>
+                                    <a th:href="@{/shopaa/admin/categories/edit/{id}(id=${category.categoryId})}"
+                                        class="pe-3"><i class="bi bi-pencil"
+                                            onclick="openEditTab('#categoryEdition-tab-pane')"></i></a>
+                                    <a th:href="@{/shopaa/admin/categories/delete/{id}(id=${category.categoryId})}"
+                                        class="pe-3"><i class="bi bi-trash3 text-danger"></i></a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="col-12 mt-4 d-flex justify-content-between w-100">
+                        <div class="total_item text-white fs-5">Total Category: <span
+                                th:text="${categoryPage.totalElements}"></span></div>
+                        <ul th:if="${categoryPage.totalPages} > 0" class="pagination rounded-0 m-0" id="pagination">
+                            <li class="page-item" th:classappend="${categoryPage.first} ? 'disabled'">
+                                <a th:href="@{/shopaa/admin/categories(page=0, size=${categoryPage.size}, keyword=${keyword})}"
+                                    class="btn btn-outline-light rounded-0">First</a>
+                            </li>
+                            <!-- Liên kết số trang -->
+                            <li class="page-item" th:each="i : ${#numbers.sequence(0, categoryPage.totalPages - 1)}"
+                                th:classappend="${categoryPage.number == i} ? 'active'">
+                                <a th:href="@{/shopaa/admin/categories(page=${i}, size=${categoryPage.size}, keyword=${keyword})}"
+                                    class="btn btn-outline-light rounded-0" th:text="${i + 1}"></a>
+                            </li>
+                            <li class="page-item" th:classappend="${categoryPage.last} ? 'disabled'">
+                                <a th:href="@{/shopaa/admin/categories(page=${categoryPage.totalPages - 1}, size=${categoryPage.size}, keyword=${keyword})}"
+                                    class="btn btn-outline-light rounded-0">Last</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
